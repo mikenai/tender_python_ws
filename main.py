@@ -38,6 +38,22 @@ async def db_delete_user(id):
     await database.execute("DELETE FROM users WHERE id = :id", {"id": id})
 
 
+async def route_user_update(request):
+    body = await request.json()
+    id = int(request.path_params["id"])
+    name = body.get("name")
+    if name == "":
+        return JSONResponse({"error": "Name is required"}, status_code=400)
+    user = await db_update_user(id, name)
+    print(user)
+    return JSONResponse(user)
+
+
+async def db_update_user(id, name):
+    row = await database.execute("UPDATE users SET name = :name WHERE id = :id RETURNING (id, name);", {"id": id, "name": name})
+    return {"id": row[0], "name": row[1]}
+
+
 async def db_get_users():
     result = await database.fetch_all("SELECT * FROM users")
     users = []
