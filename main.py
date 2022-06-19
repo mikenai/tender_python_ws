@@ -28,6 +28,16 @@ async def route_user_list(request):
     return JSONResponse(users)
 
 
+async def route_user_delete(request):
+    id = int(request.path_params["id"])
+    await db_delete_user(id)
+    return JSONResponse("User deleted")
+
+
+async def db_delete_user(id):
+    await database.execute("DELETE FROM users WHERE id = :id", {"id": id})
+
+
 async def db_get_users():
     result = await database.fetch_all("SELECT * FROM users")
     users = []
