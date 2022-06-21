@@ -1,0 +1,33 @@
+Prerequesites
+- install docker
+- brew installed
+- check python installed
+Preface
+- intro speach
+- install and create virtual env
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+Step 1
+- install package via pip: pip install starlette uvicorn databases asyncpg
+- freeze the package, optional gitignore
+Step 2 N
+- create boilerplate server with starlette
+Step 3
+- create C enpoints 
+Step 4 
+- add migrations with dbmate
+    ex.: brew install dbmate
+    ex.: dbmate --url='postgres://postgres:123@localhost:5432/postgres?sslmode=disable' up  
+  - add env file (optional)
+  - run docker image with postgres 
+  ex.: docker run -d --name workshop_users -p 5432:5432 -e POSTGRES_PASSWORD=123 -d postgres
+  - optional docker-compose
+Step 5
+  - R 
+Step 6
+  - U
+Step 7
+  - D
+Step 8
+- create curl/hurl scripts
